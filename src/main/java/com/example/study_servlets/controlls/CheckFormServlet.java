@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/Mynamepol")
+@WebServlet(urlPatterns = "/CheckFormServlet")
 public class CheckFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -113,7 +113,7 @@ public class CheckFormServlet extends HttpServlet {
                 "            </table>\r\n" + //
                 "        </div>\r\n" + //
                 "        <div>\r\n" + //
-                "            <button type=\"submit\">\uBCF4\uB0B4\uAE30</button>\r\n" + //
+                "            <button type=\"submit\">send</button>\r\n" + //
                 "        </div>\r\n" + //
                 "    </form>\r\n" + //
                 "</body>\r\n" + //
