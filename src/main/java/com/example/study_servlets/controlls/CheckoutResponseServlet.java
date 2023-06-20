@@ -9,41 +9,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(urlPatterns = "/checkoutResponseServlet")
+@WebServlet(urlPatterns = "/CheckoutResponseServlet")
 public class CheckoutResponseServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
-            String firstName = request.getParameter("first_name");
-            String lastName = request.getParameter("Last_name");
-            String userName = request.getParameter("user_name");
+            String firstName = request.getParameter("firstname");
+            String secondName = request.getParameter("secondname");
+            String userName = request.getParameter("username");
             String email = request.getParameter("email");
             String address = request.getParameter("address");
             String address2 = request.getParameter("address2");
-
+            String country = request.getParameter("country");
+            String state = request.getParameter("state");
+            String zip = request.getParameter("zip");
             PrintWriter printWriter = response.getWriter();
-            String contents = "<!DOCTYPE html>\r\n" + //
-                    "<html lang=\"en\">\r\n" + //
+
+            String contents_poll = "<!DOCTYPE html>\r\n" + //
+                    "<html lang=\"kor\">\r\n" + //
                     "<head>\r\n" + //
                     "    <meta charset=\"UTF-8\">\r\n" + //
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
                     "    <title>Document</title>\r\n" + //
                     "</head>\r\n" + //
                     "<body>\r\n" + //
-                    "    <div>first name : "+firstName+"</div>\r\n" + //
-                    "    <div> lsat name : "+lastName+"</div>\r\n" + //
-                    "    <div> user name : "+userName+"</div>\r\n" + //
-                    "    <div> email : "+email+"</div>\r\n" + //
-                    "    <div> address : "+address+"</div>\r\n" + //
-                    "    <div> address 2 : "+address2+"</div>\r\n" + //
+                    "<div>\r\n" +
+                            "    <div>First Name: " + firstName + "</div>\r\n" +
+                            "    <div>Second Name: " + secondName + "</div>\r\n" +
+                            "    <div>User Name: " + userName + "</div>\r\n" +
+                            "    <div>Email: " + email + "</div>\r\n" +
+                            "    <div>Address: " + address + "</div>\r\n" +
+                            "    <div>Address2: " + address2 + "</div>\r\n" +
+                            "    <div>Country: " + country + "</div>\r\n" +
+                            "    <div>State: " + state + "</div>\r\n" +
+                            "    <div>Zip: " + zip + "</div>\r\n" +
+                            "</div>\r\n" +
                     "</body>\r\n" + //
                     "</html>";
-            printWriter.println(contents);
+            printWriter.println(contents_poll);
             printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("done");
     }
 }

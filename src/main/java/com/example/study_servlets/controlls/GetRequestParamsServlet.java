@@ -36,7 +36,7 @@ public class GetRequestParamsServlet extends HttpServlet {
                     "</body>\r\n" + //
                     "</html>";
             printWriter.println(contents);
-            printWriter.close(); // 네크워크에 실어보냈고 CLOSED
+            printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
