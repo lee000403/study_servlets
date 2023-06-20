@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out Form</title>
+</head>
+<body>
+    <div>
+        <h2>Billing address</h2>
+    </div>
+    <form action="Mynamepol" method="get">
+        <div>
+            <table border="0">
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                </tr>
+                <tr>
+                    <td >
+                        <input type="text" name = "firstname">
+                    </td>
+                    <td >
+                        <input type="text" name = "secondname">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table border="0">
+                <tr>
+                    <td>UserName</td>
+                </tr>
+                <tr>
+                    <td >
+                        <input type="button" value="@">
+                        <input type="text" username = "username" placeholder="UserName">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table border="0" class="width_one">
+                <tr>
+                    <td>Email(Optional)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="email" email = "email" placeholder="you@example.com">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adress</td>
+                </tr>
+                <tr>
+                    <td colspan="12">
+                        <input type="text" address = "address" placeholder="1234 Main St">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address 2 (Optional)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" address2 = "address2" placeholder="Apartment or suite">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>State</td>
+                    <td>Zip</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="country" id="country">
+                            <option value="Choose">선택</option>
+                            <option value="KOREA">한국</option>
+                            <option value="USA">미국</option>
+                            <option value="CHINA">중국</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="state" id="state">
+                            <option value="choose2">선택</option>
+                            <option value="seoul">서울</option>
+                            <option value="busan">부산</option>
+                            <option value="jejudo">제주도</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="zip">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button type="submit">보내기</button>
+        </div>
+    </form>
+</body>
+</html>
