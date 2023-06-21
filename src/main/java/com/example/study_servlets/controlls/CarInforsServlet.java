@@ -47,11 +47,11 @@ public class CarInforsServlet extends HttpServlet {
             System.out.println("------------------- 적용 후 ------------------");
 
             query = "SELECT * FROM db_cars.car_infors;";
-            resultSet = statement.executeQuery(query);
+            ResultSet resultSet2 = statement.executeQuery(query);
 
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("CAR_NAME") + ", " + resultSet.getString("YEAR") + ", "
-                        + resultSet.getString("CAR_INFOR_ID") + ", " + resultSet.getString("COMPANY_ID"));
+            while (resultSet2.next()) {
+                System.out.println(resultSet2.getString("CAR_NAME") + ", " + resultSet2.getString("YEAR") + ", "
+                        + resultSet2.getString("CAR_INFOR_ID") + ", " + resultSet2.getString("COMPANY_ID"));
             }
         } catch (Exception e) {
             // TODO: handle exception
