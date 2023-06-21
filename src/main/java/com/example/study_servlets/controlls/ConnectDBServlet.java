@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.commons.Common;
 import com.example.study_servlets.Commons;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
