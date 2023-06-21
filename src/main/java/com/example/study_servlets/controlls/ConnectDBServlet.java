@@ -34,8 +34,36 @@ public class ConnectDBServlet extends HttpServlet {
             Connection connection = DriverManager.getConnection(url, user, password);
             System.out.println("DB연결 성공\n");
 
+<<<<<<< HEAD
             // 클라이언트에 html 화면 제공
             String contents = "yoju lab";
+=======
+            // String contents = "GABAE OH !";
+
+            // 클라이언트에 html화면 제공
+            String contents = "<!DOCTYPE html>\r\n" + //
+                    "<html lang=\"en\">\r\n" + //
+                    "\r\n" + //
+                    "<head>\r\n" + //
+                    "    <meta charset=\"UTF-8\">\r\n" + //
+                    "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + //
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
+                    "    <title>Bootstrap Template</title>\r\n" + //
+                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css\">\r\n"
+                    + //
+                    "    <link rel=\"stylesheet\" href=\"../css/commons.css\">\r\n" + //
+                    "</head>\r\n" + //
+                    "\r\n" + //
+                    "<body>\r\n" + //
+                    "    <table class=\"table table-bordered table-hover\">\r\n" + //
+                    "        <thead>\r\n" + //
+                    "            <tr>\r\n" + //
+                    "                <th>COMPANY_ID</th>\r\n" + //
+                    "                <th>COMPANY</th>\r\n" + //
+                    "            </tr>\r\n" + //
+                    "        </thead>\r\n" + //
+                    "        <tbody>\r\n";
+>>>>>>> acdba4c (수정)
 
             // - query Edit
             Statement statement = connection.createStatement();
@@ -43,14 +71,32 @@ public class ConnectDBServlet extends HttpServlet {
             String query = " SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); // 결과값 리턴 , selct만 resulset으로 받음(select 테이블 형식으로 나오니깐)
 
-            while (resultSet.next()) { // next: 뭉치를 던져줌
-                // resultSet.getString("COMPANY_ID");
-                // resultSet.getString("COMPANY");
-                System.out.println(resultSet.getString("COMPANY_ID") + "" + resultSet.getString("COMPANY"));
+            //컨텐츠 증가
+            while (resultSet.next()) {
+                contents = contents + " <tr>\r\n" + //
+                        "                <td>" + resultSet.getString("COMPANY_ID") + "</td>\r\n" + //
+                        "                <td>" + resultSet.getString("COMPANY") + "</td>\r\n" + //
+                        "            </tr>\r\n";
             }
+<<<<<<< HEAD
             
             // 클라이언트에 html 화면 제공
             PrintWriter printWriter = response.getWriter();
+=======
+
+            contents = contents + "        </tbody>\r\n" + //
+                    "    </table>\r\n" + //
+                    "</body>\r\n" + //
+                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n"
+                    + //
+                    "\r\n" + //
+                    "</html>";
+
+            // 클라이언트에 html 화면 제공
+            response.setContentType("text/html;charset=UTF-8"); //브라우저상에서 한글이 깨지지 않게게 
+            
+            PrintWriter printWriter = response.getWriter(); // response.getWriter();네크워크에 응답하고 작성할꺼야 실어보내는거야
+>>>>>>> acdba4c (수정)
             printWriter.println(contents);
             printWriter.close();
 
