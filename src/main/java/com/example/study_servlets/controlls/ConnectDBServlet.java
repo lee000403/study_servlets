@@ -49,11 +49,12 @@ public class ConnectDBServlet extends HttpServlet {
                     "        <tbody>\r\n";
 
             // - query Edit
+
             FactorysDao factorysDao = new FactorysDao();
             ArrayList factoryList = new ArrayList();
             factoryList = factorysDao.selectAll();
-            for (int i = 0; i < factoryList.size();) {
-                HashMap hashMap = new HashMap<>();
+            for (int i = 0; i < factoryList.size(); i++) {
+                HashMap hashMap = new HashMap();
                 hashMap = (HashMap) factoryList.get(i);
                 contents = contents + " <tr>\r\n" + //
                         "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
