@@ -43,6 +43,7 @@ public class CarInforsServlet extends HttpServlet {
                     "values\n" + //
                     "('아반떼', '2021', '" + uuid + "', 'C001')";
             int count = statement.executeUpdate(query);
+            resultSet.close();
 
             System.out.println("------------------- 적용 후 ------------------");
 
@@ -53,7 +54,7 @@ public class CarInforsServlet extends HttpServlet {
                 System.out.println(resultSet2.getString("CAR_NAME") + ", " + resultSet2.getString("YEAR") + ", "
                         + resultSet2.getString("CAR_INFOR_ID") + ", " + resultSet2.getString("COMPANY_ID"));
             }
-            
+            resultSet2.close();
         } catch (Exception e) {
             // TODO: handle exception
         }
