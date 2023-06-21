@@ -13,31 +13,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.study_servlets.Commons;
+
 @WebServlet(urlPatterns = "/ConnectDBServlet")
 public class ConnectDBServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            // - MySQL workbench 실행 : JDBC
-            // - User/password와 접속 IP:port 접속
-            String url = "jdbc:mysql://192.168.0.166:3306/db_cars"; // 마지막은 db이름으로 "db_cars"
-            // localhost도 가능하나 IP주소를 넣는게 보다 좋음
+            // // - MySQL workbench 실행 : JDBC
+            // // - User/password와 접속 IP:port 접속
+            // String url = "jdbc:mysql://192.168.0.166:3306/db_cars"; // 마지막은 db이름으로 "db_cars"
+            // // localhost도 가능하나 IP주소를 넣는게 보다 좋음
 
-            // jdbc : java DB connetion , 'https://www.naver.com/'의 구조와 유사 / 원격으로 db_cars에
-            // 연결하는 구조를 나열
+            // // jdbc : java DB connetion , 'https://www.naver.com/'의 구조와 유사 / 원격으로 db_cars에
+            // // 연결하는 구조를 나열
 
-            String user = "yojulab";
-            String password = "!yojulab*";
+            // String user = "yojulab";
+            // String password = "!yojulab*";
 
-            // DB 연결
-            Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("DB연결 성공\n");
+            // // DB 연결
+            // Connection connection = DriverManager.getConnection(url, user, password);
+            // System.out.println("DB연결 성공\n");
 
-<<<<<<< HEAD
-            // 클라이언트에 html 화면 제공
-            String contents = "yoju lab";
-=======
+
             // String contents = "GABAE OH !";
 
             // 클라이언트에 html화면 제공
@@ -63,10 +62,10 @@ public class ConnectDBServlet extends HttpServlet {
                     "            </tr>\r\n" + //
                     "        </thead>\r\n" + //
                     "        <tbody>\r\n";
->>>>>>> acdba4c (수정)
 
             // - query Edit
-            Statement statement = connection.createStatement();
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
 
             String query = " SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); // 결과값 리턴 , selct만 resulset으로 받음(select 테이블 형식으로 나오니깐)
@@ -77,31 +76,16 @@ public class ConnectDBServlet extends HttpServlet {
                         "                <td>" + resultSet.getString("COMPANY_ID") + "</td>\r\n" + //
                         "                <td>" + resultSet.getString("COMPANY") + "</td>\r\n" + //
                         "            </tr>\r\n";
+                    
             }
-<<<<<<< HEAD
-            
-            // 클라이언트에 html 화면 제공
-            PrintWriter printWriter = response.getWriter();
-=======
-
-            contents = contents + "        </tbody>\r\n" + //
-                    "    </table>\r\n" + //
-                    "</body>\r\n" + //
-                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n"
-                    + //
-                    "\r\n" + //
-                    "</html>";
-
             // 클라이언트에 html 화면 제공
             response.setContentType("text/html;charset=UTF-8"); //브라우저상에서 한글이 깨지지 않게게 
             
             PrintWriter printWriter = response.getWriter(); // response.getWriter();네크워크에 응답하고 작성할꺼야 실어보내는거야
->>>>>>> acdba4c (수정)
             printWriter.println(contents);
             printWriter.close();
 
             // SELECT COUNT(*) AS CNT FROM factorys;
-            query = "SELECT COUNT(*) AS CNT FROM factorys";
             resultSet = statement.executeQuery(query);
             int totalCount = 0;
             while (resultSet.next()) { // next: 뭉치를 던져줌
