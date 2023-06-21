@@ -46,7 +46,7 @@ public class ConnectDBServlet extends HttpServlet {
 
             // - query Edit
             Commons commons = new Commons();
-            Statement statement = commons.getStatement();
+            Statement statement = commons.getStatement(); 
 
             String query = " SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); // 결과값 리턴 , selct만 resulset으로 받음(select 테이블 형식으로 나오니깐)
