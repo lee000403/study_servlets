@@ -43,6 +43,16 @@ public class CarInforsServlet extends HttpServlet {
                     "values\n" + //
                     "('아반떼', '2021', '" + uuid + "', 'C001')";
             int count = statement.executeUpdate(query);
+
+            System.out.println("------------------- 적용 후 ------------------");
+
+            query = "SELECT * FROM db_cars.car_infors;";
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("CAR_NAME") + ", " + resultSet.getString("YEAR") + ", "
+                        + resultSet.getString("CAR_INFOR_ID") + ", " + resultSet.getString("COMPANY_ID"));
+            }
         } catch (Exception e) {
             // TODO: handle exception
         }
