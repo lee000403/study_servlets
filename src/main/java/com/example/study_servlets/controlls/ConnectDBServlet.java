@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.commons.Common;
+import com.example.study_servlets.Commons;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
 public class ConnectDBServlet extends HttpServlet {
@@ -45,27 +46,20 @@ public class ConnectDBServlet extends HttpServlet {
                     "        <tbody>\r\n";
 
             // - query Edit
-            Common common = new Common();
-            Statement statement = common.getStatement();
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+
             String query = " SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); // 결과값 리턴 , selct만 resulset으로 받음(select 테이블 형식으로 나오니깐)
-            while (resultSet.next()) { // next: 뭉치를 던져줌
-                // resultSet.getString("COMPANY_ID");
-                // resultSet.getString("COMPANY");
-                contents = contents + 
-                    "            <tr>\r\n" + //
-                    "                <td>"+resultSet.getString("COMPANY_ID")+"</td>\r\n" + //
-                    "                <td>"+resultSet.getString("COMPANY")+"</td>\r\n" + //
-                    "            </tr>\r\n";
-            }
-            contents = contents + "        </tbody>\r\n" + //
-                    "    </table>\r\n" + //
-                    "</body>\r\n" + //
-                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n"
-                    + //
-                    "\r\n" + //
-                    "</html>";
 
+            //컨텐츠 증가
+            while (resultSet.next()) {
+                contents = contents + " <tr>\r\n" + //
+                        "                <td>" + resultSet.getString("COMPANY_ID") + "</td>\r\n" + //
+                        "                <td>" + resultSet.getString("COMPANY") + "</td>\r\n" + //
+                        "            </tr>\r\n";
+                    
+            }
             // 클라이언트에 html 화면 제공
             response.setContentType("text/html;charset=UTF-8"); //브라우저상에서 한글이 깨지지 않게게 
             
@@ -74,7 +68,6 @@ public class ConnectDBServlet extends HttpServlet {
             printWriter.close();
 
             // SELECT COUNT(*) AS CNT FROM factorys;
-            query = "SELECT COUNT(*) AS CNT FROM factorys";
             resultSet = statement.executeQuery(query);
             int totalCount = 0;
             while (resultSet.next()) { // next: 뭉치를 던져줌
