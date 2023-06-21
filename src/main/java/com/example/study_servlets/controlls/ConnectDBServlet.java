@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.commons.Common;
 import com.example.study_servlets.Commons;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
@@ -21,24 +22,6 @@ public class ConnectDBServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            // // - MySQL workbench 실행 : JDBC
-            // // - User/password와 접속 IP:port 접속
-            // String url = "jdbc:mysql://192.168.0.166:3306/db_cars"; // 마지막은 db이름으로 "db_cars"
-            // // localhost도 가능하나 IP주소를 넣는게 보다 좋음
-
-            // // jdbc : java DB connetion , 'https://www.naver.com/'의 구조와 유사 / 원격으로 db_cars에
-            // // 연결하는 구조를 나열
-
-            // String user = "yojulab";
-            // String password = "!yojulab*";
-
-            // // DB 연결
-            // Connection connection = DriverManager.getConnection(url, user, password);
-            // System.out.println("DB연결 성공\n");
-
-
-            // String contents = "GABAE OH !";
-
             // 클라이언트에 html화면 제공
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
@@ -48,8 +31,7 @@ public class ConnectDBServlet extends HttpServlet {
                     "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + //
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
                     "    <title>Bootstrap Template</title>\r\n" + //
-                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css\">\r\n"
-                    + //
+                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css\">\r\n" + //
                     "    <link rel=\"stylesheet\" href=\"../css/commons.css\">\r\n" + //
                     "</head>\r\n" + //
                     "\r\n" + //
@@ -92,6 +74,13 @@ public class ConnectDBServlet extends HttpServlet {
                 System.out.println(resultSet.getInt("CNT"));
                 totalCount = resultSet.getInt("CNT");
             }
+            contents = contents +                     "        </tbody>\r\n" + //
+                    "    </table>\r\n" + //
+                    "</body>\r\n" + //
+                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n" + //
+                    "\r\n" + //
+                    "</html>";
+
 
             /*
              * - 값이 테이블로 나오지 않음
