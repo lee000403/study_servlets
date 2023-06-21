@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.daos.CarInforsDao;
 import com.example.daos.FactorysDao;
-import com.example.study_servlets.Commons;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
 public class ConnectDBServlet extends HttpServlet {
@@ -42,36 +42,50 @@ public class ConnectDBServlet extends HttpServlet {
                     "    <table class=\"table table-bordered table-hover\">\r\n" + //
                     "        <thead>\r\n" + //
                     "            <tr>\r\n" + //
+                    "                <th>CAR_NAME</th>\r\n" + //
+                    "                <th>YEAR</th>\r\n" + //
+                    "                <th>CAR_INFOR_ID</th>\r\n" + //
                     "                <th>COMPANY_ID</th>\r\n" + //
-                    "                <th>COMPANY</th>\r\n" + //
                     "            </tr>\r\n" + //
                     "        </thead>\r\n" + //
                     "        <tbody>\r\n";
 
             // - query Edit
 
-            FactorysDao factorysDao = new FactorysDao();
-            ArrayList factoryList = new ArrayList();
-            factoryList = factorysDao.selectAll();
-            for (int i = 0; i < factoryList.size(); i++) {
-                HashMap hashMap = new HashMap();
-                hashMap = (HashMap) factoryList.get(i);
+            // FactorysDao factorysDao = new FactorysDao();
+            // ArrayList factoryList = new ArrayList();
+            // factoryList = factorysDao.selectAll();
+            // for (int i = 0; i < factoryList.size(); i++) {
+            //     HashMap hashMap = new HashMap();
+            //     hashMap = (HashMap) factoryList.get(i);
+            //     contents = contents + " <tr>\r\n" + //
+            //             "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+            //             "                <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
+            //             "            </tr>\r\n";
+            // }
+
+            CarInforsDao carInforsDao = new CarInforsDao();
+            ArrayList carInforList = new ArrayList();
+            carInforList = carInforsDao.select_Car();
+            for (int i = 0; i < carInforList.size(); i++) {
+                HashMap hashMap = new HashMap<>();
+                hashMap = (HashMap) carInforList.get(i);
                 contents = contents + " <tr>\r\n" + //
+                        "                <td>" + hashMap.get("CAR_NAME") + "</td>\r\n" + //
+                        "                <td>" + hashMap.get("YEAR") + "</td>\r\n" + //
+                        "                <td>" + hashMap.get("CAR_INFOR_ID") + "</td>\r\n" + //
                         "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
-                        "                <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
                         "            </tr>\r\n";
             }
-
             // 클라이언트에 html 화면 제공
             response.setContentType("text/html;charset=UTF-8"); // 브라우저상에서 한글이 깨지지 않게
-
 
             // // SELECT COUNT(*) AS CNT FROM factorys;
             // resultSet = statement.executeQuery(query);
             // int totalCount = 0;
             // while (resultSet.next()) { // next: 뭉치를 던져줌
-            //     System.out.println(resultSet.getInt("CNT"));
-            //     totalCount = resultSet.getInt("CNT");
+            // System.out.println(resultSet.getInt("CNT"));
+            // totalCount = resultSet.getInt("CNT");
             // }
             contents = contents + "        </tbody>\r\n" + //
                     "    </table>\r\n" + //
@@ -105,26 +119,26 @@ public class ConnectDBServlet extends HttpServlet {
 
             // // data 수정
             // /*
-            //  * UPDATE factorys
-            //  * SET COMPANY = '패러리'
-            //  * WHERE COMPANY_ID = 'CAR-01';
-            //  */
+            // * UPDATE factorys
+            // * SET COMPANY = '패러리'
+            // * WHERE COMPANY_ID = 'CAR-01';
+            // */
             // String companyId = "";
             // String company = "패러리";
             // query = "UPDATE factorys " +
-            //         "SET COMPANY = '" + company + "' " +
-            //         "WHERE COMPANY_ID = '" + companyId + "' ";
+            // "SET COMPANY = '" + company + "' " +
+            // "WHERE COMPANY_ID = '" + companyId + "' ";
 
             // int count = statement.executeUpdate(query);
 
             // // 삭제
             // /*
-            //  * DELETE FROM factorys
-            //  * WHERE COMPANY_ID = 'CAR-01';
-            //  */
+            // * DELETE FROM factorys
+            // * WHERE COMPANY_ID = 'CAR-01';
+            // */
 
             // query = "DELETE FROM factorys " +
-            //         "WHERE COMPANY_ID = '" + companyId + "' ";
+            // "WHERE COMPANY_ID = '" + companyId + "' ";
 
             // count = statement.executeUpdate(query);
 
