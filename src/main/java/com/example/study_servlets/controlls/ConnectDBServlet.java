@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.daos.FactorysDao;
 import com.example.study_servlets.Commons;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
@@ -30,7 +33,8 @@ public class ConnectDBServlet extends HttpServlet {
                     "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + //
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
                     "    <title>Bootstrap Template</title>\r\n" + //
-                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css\">\r\n" + //
+                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css\">\r\n"
+                    + //
                     "    <link rel=\"stylesheet\" href=\"../css/commons.css\">\r\n" + //
                     "</head>\r\n" + //
                     "\r\n" + //
@@ -45,41 +49,40 @@ public class ConnectDBServlet extends HttpServlet {
                     "        <tbody>\r\n";
 
             // - query Edit
-            Commons commons = new Commons();
-            Statement statement = commons.getStatement(); 
 
-            String query = " SELECT * FROM factorys";
-            ResultSet resultSet = statement.executeQuery(query); // 결과값 리턴 , selct만 resulset으로 받음(select 테이블 형식으로 나오니깐)
-
-            //컨텐츠 증가
-            while (resultSet.next()) {
+            FactorysDao factorysDao = new FactorysDao();
+            ArrayList factoryList = new ArrayList();
+            factoryList = factorysDao.selectAll();
+            for (int i = 0; i < factoryList.size(); i++) {
+                HashMap hashMap = new HashMap();
+                hashMap = (HashMap) factoryList.get(i);
                 contents = contents + " <tr>\r\n" + //
-                        "                <td>" + resultSet.getString("COMPANY_ID") + "</td>\r\n" + //
-                        "                <td>" + resultSet.getString("COMPANY") + "</td>\r\n" + //
+                        "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                        "                <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
                         "            </tr>\r\n";
-                    
             }
+
             // 클라이언트에 html 화면 제공
-            response.setContentType("text/html;charset=UTF-8"); //브라우저상에서 한글이 깨지지 않게게 
-            
+            response.setContentType("text/html;charset=UTF-8"); // 브라우저상에서 한글이 깨지지 않게게
+
             PrintWriter printWriter = response.getWriter(); // response.getWriter();네크워크에 응답하고 작성할꺼야 실어보내는거야
             printWriter.println(contents);
             printWriter.close();
 
-            // SELECT COUNT(*) AS CNT FROM factorys;
-            resultSet = statement.executeQuery(query);
-            int totalCount = 0;
-            while (resultSet.next()) { // next: 뭉치를 던져줌
-                System.out.println(resultSet.getInt("CNT"));
-                totalCount = resultSet.getInt("CNT");
-            }
-            contents = contents +                     "        </tbody>\r\n" + //
+            // // SELECT COUNT(*) AS CNT FROM factorys;
+            // resultSet = statement.executeQuery(query);
+            // int totalCount = 0;
+            // while (resultSet.next()) { // next: 뭉치를 던져줌
+            //     System.out.println(resultSet.getInt("CNT"));
+            //     totalCount = resultSet.getInt("CNT");
+            // }
+            contents = contents + "        </tbody>\r\n" + //
                     "    </table>\r\n" + //
                     "</body>\r\n" + //
-                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n" + //
+                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js\"></script>\r\n"
+                    + //
                     "\r\n" + //
                     "</html>";
-
 
             /*
              * - 값이 테이블로 나오지 않음
@@ -106,24 +109,24 @@ public class ConnectDBServlet extends HttpServlet {
              * SET COMPANY = '패러리'
              * WHERE COMPANY_ID = 'CAR-01';
              */
-            String companyId = "";
-            String company = "패러리";
-            query = "UPDATE factorys " +
-                    "SET COMPANY = '" + company + "' " +
-                    "WHERE COMPANY_ID = '" + companyId + "' ";
+            // String companyId = "";
+            // String company = "패러리";
+            // query = "UPDATE factorys " +
+            //         "SET COMPANY = '" + company + "' " +
+            //         "WHERE COMPANY_ID = '" + companyId + "' ";
 
-            int count = statement.executeUpdate(query);
+            // int count = statement.executeUpdate(query);
 
-            // 삭제
-            /*
-             * DELETE FROM factorys
-             * WHERE COMPANY_ID = 'CAR-01';
-             */
+            // // 삭제
+            // /*
+            //  * DELETE FROM factorys
+            //  * WHERE COMPANY_ID = 'CAR-01';
+            //  */
 
-            query = "DELETE FROM factorys " +
-                    "WHERE COMPANY_ID = '" + companyId + "' ";
+            // query = "DELETE FROM factorys " +
+            //         "WHERE COMPANY_ID = '" + companyId + "' ";
 
-            count = statement.executeUpdate(query);
+            // count = statement.executeUpdate(query);
 
             System.out.println();
 
