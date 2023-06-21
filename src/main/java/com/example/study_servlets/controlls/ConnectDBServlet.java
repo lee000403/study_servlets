@@ -36,6 +36,7 @@ public class ConnectDBServlet extends HttpServlet {
 
             // 클라이언트에 html 화면 제공
             String contents = "yoju lab";
+
             // - query Edit
             Statement statement = connection.createStatement();
 
@@ -47,6 +48,8 @@ public class ConnectDBServlet extends HttpServlet {
                 // resultSet.getString("COMPANY");
                 System.out.println(resultSet.getString("COMPANY_ID") + "" + resultSet.getString("COMPANY"));
             }
+            
+            // 클라이언트에 html 화면 제공
             PrintWriter printWriter = response.getWriter();
             printWriter.println(contents);
             printWriter.close();
