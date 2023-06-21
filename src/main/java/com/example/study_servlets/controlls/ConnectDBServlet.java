@@ -13,15 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/ConnectDBServlet")
-<<<<<<< HEAD
-public class ConnectDBServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-           try {
-            // - MySQL workbench 실행 : JDBC
-            // - User/password와 접속 IP:port 접속
-            String url = "jdbc:mysql://192.168.0.35:3306/db_cars"; // 마지막은 db이름으로 "db_cars"
-=======
 public class ConnectDBServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +20,6 @@ public class ConnectDBServlet extends HttpServlet{
             // - MySQL workbench 실행 : JDBC
             // - User/password와 접속 IP:port 접속
             String url = "jdbc:mysql://192.168.0.166:3306/db_cars"; // 마지막은 db이름으로 "db_cars"
->>>>>>> bbf6b6bbf0be5a9863f249be79c4aa0281fbb998
             // localhost도 가능하나 IP주소를 넣는게 보다 좋음
 
             // jdbc : java DB connetion , 'https://www.naver.com/'의 구조와 유사 / 원격으로 db_cars에 연결하는 구조를 나열
