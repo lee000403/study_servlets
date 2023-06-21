@@ -53,6 +53,7 @@ public class CarInforsServlet extends HttpServlet {
                 System.out.println(resultSet2.getString("CAR_NAME") + ", " + resultSet2.getString("YEAR") + ", "
                         + resultSet2.getString("CAR_INFOR_ID") + ", " + resultSet2.getString("COMPANY_ID"));
             }
+            
         } catch (Exception e) {
             // TODO: handle exception
         }
