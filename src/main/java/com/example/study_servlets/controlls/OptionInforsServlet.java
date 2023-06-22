@@ -43,6 +43,13 @@ public class OptionInforsServlet extends HttpServlet {
                          "    <title>Document</title>\r\n" + //
                          "</head>\r\n" + //
                          "<body>\r\n" + //
+                         " <div class=\"container\">\r\n" + //
+                         "        <form action=\"OptionInforsServlet\">\r\n" + //
+                         "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                         "            <input type=\"text\" name=\"search\">\r\n" + //
+                         "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                         "        </form>\r\n" + //
+                         "    </div>"+//
                          "    <div class=\"container\">\r\n" + //
                          "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
@@ -59,7 +66,17 @@ public class OptionInforsServlet extends HttpServlet {
                          "                </tr>\r\n" + //
                          "            </thead>\r\n" + //
                          "            <tbody>\r\n";
-               while (resultSet.next()) {
+               OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
+               ArrayList optionInforList = new ArrayList<>();
+               
+               optionInforList = optionInforsDao2.SelectWithSearch("");
+
+
+               // for문을 돌면서 값을 받아냄
+               for (int i = 0; i < optionInforList.size(); i++) {
+                    HashMap optionInforRecord = new HashMap<>();
+                    optionInforRecord = (HashMap) optionInforList.get(i);
+
                     contents = contents + "                <tr>\r\n" + //
                               "                    <td>"+resultSet.getString("OPTION_INFOR_ID")+"</td>\r\n" + //
                               "                    <td>"+resultSet.getString("OPTION_NAME")+" </td>\r\n";  //;
