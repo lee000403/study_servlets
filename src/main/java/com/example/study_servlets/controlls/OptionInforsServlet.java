@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.commons.Common;
-import com.example.daos.OptionInforsDao;
-import com.example.daos.OptionInforsDao2;
 
 @WebServlet(urlPatterns = "/OptionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
      @Override
-     protected void doGet(HttpServletRequest requset, HttpServletResponse response)
+     protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
-
+               String temp = "    <div class=\"container\">\r\n" + //
+                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                         "            <input type=\"text\" name=\"search\">\r\n" + //
+                         "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                         "        </form>\r\n" + //
+                         "    </div>";
+               // DB에서 terminal로 데이터 가져오는 코드
+               Common common = new Common();
+               Statement statement = common.getStatement(); // Editor in Workbanch
+               String query = "SELECT *\n" +
+                         "FROM option_infors;";
+               ResultSet resultSet = statement.executeQuery(query); // query 실행
                // 웹에 html 방식으로 띄어주는 것
                String contents = "<!DOCTYPE html>\r\n" + //
                          "<html lang=\"en\">\r\n" + //
@@ -36,6 +44,13 @@ public class OptionInforsServlet extends HttpServlet {
                          "</head>\r\n" + //
                          "<body>\r\n" + //
                          "    <div class=\"container\">\r\n" + //
+                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                         "            <input type=\"text\" name=\"search\">\r\n" + //
+                         "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                         "        </form>\r\n" + //
+                         "    </div>" + //
+                         "    <div class=\"container\">\r\n" + //
                          "        <table class=\"table table-bordered table-hover\">\r\n" + //
                          "            <thead>\r\n" + //
                          "                <tr>\r\n" + //
@@ -44,17 +59,10 @@ public class OptionInforsServlet extends HttpServlet {
                          "                </tr>\r\n" + //
                          "            </thead>\r\n" + //
                          "            <tbody>\r\n";
-               OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
-               ArrayList optionInforList = new ArrayList<>();
-               optionInforList = optionInforsDao2.SelectWithSearch("");
-               //for문을 돌면서 값을 받아냄
-               for(int i=0; i < optionInforList.size(); i++){
-                    HashMap optionInforRecord = new HashMap<>();
-                    optionInforRecord = (HashMap) optionInforList.get(i);
-                    
+               while (resultSet.next()) {
                     contents = contents + "                <tr>\r\n" + //
-                              "                    <td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
-                              "                    <td>" + optionInforRecord.get("OPTION_NAME") + " </td>\r\n"; // ;
+                              "                    <td>"+resultSet.getString("OPTION_INFOR_ID")+"</td>\r\n" + //
+                              "                    <td>"+resultSet.getString("OPTION_NAME")+" </td>\r\n";  //;
                }
                contents = contents + " </tbody>\r\n" + //
                          "        </table>\r\n" + //
