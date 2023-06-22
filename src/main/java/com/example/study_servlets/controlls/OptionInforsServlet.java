@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.commons.Common;
+import com.example.daos.OptionInforsDao2;
 
 @WebServlet(urlPatterns = "/OptionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
@@ -19,8 +22,10 @@ public class OptionInforsServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
+               String search = request.getParameter("search"); // 검색어를 받는 것
+
                String temp = "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\">\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
@@ -46,12 +51,12 @@ public class OptionInforsServlet extends HttpServlet {
                          " <div class=\"container\">\r\n" + //
                          "        <form action=\"OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
-                         "            <input type=\"text\" name=\"search\" value='>\r\n" + //
+                         "            <input type=\"text\" name=\"search\" value='"+search+"'>\r\n" + // //place hoder 역할 value='"+search+"'
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
                          "        </form>\r\n" + //
-                         "    </div>"+//
+                         "    </div>" + //
                          "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\">\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
@@ -68,9 +73,8 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <tbody>\r\n";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
-               String search = request.getParameter("search"); //검색어를 받는 것 
+            
                optionInforList = optionInforsDao2.SelectWithSearch(search);
-
 
                // for문을 돌면서 값을 받아냄
                for (int i = 0; i < optionInforList.size(); i++) {
@@ -78,8 +82,8 @@ public class OptionInforsServlet extends HttpServlet {
                     optionInforRecord = (HashMap) optionInforList.get(i);
 
                     contents = contents + "                <tr>\r\n" + //
-                              "                    <td>"+resultSet.getString("OPTION_INFOR_ID")+"</td>\r\n" + //
-                              "                    <td>"+resultSet.getString("OPTION_NAME")+" </td>\r\n";  //;
+                              "                    <td>" + resultSet.getString("OPTION_INFOR_ID") + "</td>\r\n" + //
+                              "                    <td>" + resultSet.getString("OPTION_NAME") + " </td>\r\n"; // ;
                }
                contents = contents + " </tbody>\r\n" + //
                          "        </table>\r\n" + //
