@@ -1,17 +1,9 @@
 package com.example.study_servlets.controlls;
 
-<<<<<<< HEAD
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.io.IOException;
-import java.io.PrintWriter;
-=======
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
->>>>>>> ce1dbb16bb746add5e250a0f87c9782f612f2085
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
