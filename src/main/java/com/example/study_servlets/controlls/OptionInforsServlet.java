@@ -22,8 +22,10 @@ public class OptionInforsServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
+               String search = request.getParameter("search"); // 검색어를 받는 것
+
                String temp = "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\">\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
@@ -47,8 +49,15 @@ public class OptionInforsServlet extends HttpServlet {
                          "</head>\r\n" + //
                          "\r\n" + //
                          "<body>\r\n" + //
+                         " <div class=\"container\">\r\n" + //
+                         "        <form action=\"OptionInforsServlet\">\r\n" + //
+                         "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                         "            <input type=\"text\" name=\"search\" value='"+search+"'>\r\n" + // //place hoder 역할 value='"+search+"'
+                         "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                         "        </form>\r\n" + //
+                         "    </div>" + //
                          "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.35:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\">\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
@@ -59,9 +68,7 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <thead>";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
-               String search = request.getParameter("search"); //검색어를 받는 것 
                optionInforList = optionInforsDao2.SelectWithSearch(search);
-
 
                // for문을 돌면서 값을 받아냄
                for (int i = 0; i < optionInforList.size(); i++) {
