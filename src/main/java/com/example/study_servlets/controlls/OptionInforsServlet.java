@@ -38,7 +38,7 @@ public class OptionInforsServlet extends HttpServlet {
                          " <div class=\"container\">\r\n" + //
                          "        <form action=\"OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
-                         "            <input type=\"text\" name=\"search\">\r\n" + //
+                         "            <input type=\"text\" name=\"search\" value='>\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
                          "        </form>\r\n" + //
                          "    </div>"+//
@@ -53,8 +53,8 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <tbody>\r\n";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
-               
-               optionInforList = optionInforsDao2.SelectWithSearch("");
+               String search = request.getParameter("search"); //검색어를 받는 것 
+               optionInforList = optionInforsDao2.SelectWithSearch(search);
 
 
                // for문을 돌면서 값을 받아냄

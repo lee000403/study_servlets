@@ -14,8 +14,9 @@ public class OptionInforsDao2 {
             // DB에서 terminal로 데이터 가져오는 코드
             Common common = new Common();
             Statement statement = common.getStatement(); // Editor in Workbanch
-            String query = "SELECT *\n" +
-                    "FROM option_infors;";
+            String query = "SELECT *\n" + //
+                    "FROM option_infors\n" + //
+                    "where OPTION_NAME like '"+search+"%';";
             ResultSet resultSet = statement.executeQuery(query); // query 실행
 
             HashMap optionInforRecord = new HashMap<>();
