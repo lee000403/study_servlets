@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.commons.Common;
+import com.example.daos.OptionInforsDao;
+import com.example.daos.OptionInforsDao2;
 
 @WebServlet(urlPatterns = "/OptionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
@@ -19,13 +23,6 @@ public class OptionInforsServlet extends HttpServlet {
      protected void doGet(HttpServletRequest requset, HttpServletResponse response)
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
-               // DB에서 terminal로 데이터 가져오는 코드
-               Common common = new Common();
-               Statement statement = common.getStatement(); // Editor in Workbanch
-               String query = "SELECT *\n" +
-                         "FROM option_infors;";
-               ResultSet resultSet = statement.executeQuery(query); // query 실행
-             
 
                // 웹에 html 방식으로 띄어주는 것
                String contents = "<!DOCTYPE html>\r\n" + //
@@ -47,10 +44,17 @@ public class OptionInforsServlet extends HttpServlet {
                          "                </tr>\r\n" + //
                          "            </thead>\r\n" + //
                          "            <tbody>\r\n";
-               while (resultSet.next()) {
+               OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
+               ArrayList optionInforList = new ArrayList<>();
+               optionInforList = optionInforsDao2.SelectWithSearch("");
+               //for문을 돌면서 값을 받아냄
+               for(int i=0; i < optionInforList.size(); i++){
+                    HashMap optionInforRecord = new HashMap<>();
+                    optionInforRecord = (HashMap) optionInforList.get(i);
+                    
                     contents = contents + "                <tr>\r\n" + //
-                              "                    <td>"+resultSet.getString("OPTION_INFOR_ID")+"</td>\r\n" + //
-                              "                    <td>"+resultSet.getString("OPTION_NAME")+" </td>\r\n";  //;
+                              "                    <td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
+                              "                    <td>" + optionInforRecord.get("OPTION_NAME") + " </td>\r\n"; // ;
                }
                contents = contents + " </tbody>\r\n" + //
                          "        </table>\r\n" + //
