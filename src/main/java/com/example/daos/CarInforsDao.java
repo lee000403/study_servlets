@@ -30,8 +30,10 @@ public class CarInforsDao {
 
             while (resultSet.next()) {
                 hashMap = new HashMap();
-                hashMap.put("COMPANY_ID", resultSet.getString("COMPANY_ID"));
                 hashMap.put("CAR_NAME", resultSet.getString("CAR_NAME"));
+                hashMap.put("YEAR", resultSet.getString("YEAR"));
+                hashMap.put("CAR_INFOR_ID", resultSet.getString("CAR_INFOR_ID"));
+                hashMap.put("COMPANY_ID", resultSet.getString("COMPANY_ID"));
                 arrayList.add(hashMap);
             }
         } catch (Exception e) {

@@ -66,7 +66,7 @@ public class ConnectDBServlet extends HttpServlet {
 
             CarInforsDao carInforsDao = new CarInforsDao();
             ArrayList carInforList = new ArrayList();
-            carInforList = carInforsDao.select_Car();
+            carInforList = carInforsDao.selectAll();
             for (int i = 0; i < carInforList.size(); i++) {
                 HashMap hashMap = new HashMap<>();
                 hashMap = (HashMap) carInforList.get(i);
