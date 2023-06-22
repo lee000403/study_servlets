@@ -4,21 +4,53 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.example.commons.Common;
 
 public class OptionInforsDao2 {
+    public int UpdateWithUniqueID(String unqiue_id, String name) {
+        int count = 0;
+        try {
+            Common common = new Common();
+            Statement statement = common.getStatement();
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '"+name+"'\n" + //
+                    "where OPTION_INFOR_ID = '"+unqiue_id+"'";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            
+        }
+        return count;
+    }
+    public int InserWithUniqueID(String uniqiue_id){
+        int count = 0;
+        try {
+            Common common = new Common();
+            Statement statement = common.getStatement();
+            String uuid = common.Commons();
+            String query = "INSERT INTO option_infors\n" + //
+                    "(OPTION_INFOR_ID, OPTION_NAME)\n" + //
+                    "values\n" + //
+                    "('"+uuid+"', '"+uniqiue_id+"')";
+            count = statement.executeUpdate(query);            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
     public int DeleteWithUniqueID(String unqiue_id){
+        int count = 0;
         try {
             Common common = new Common();
             Statement statement = common.getStatement(); // Editor in Workbanch
             String query = "delete from option_infors\n" + //
                     "where OPTION_INFOR_ID = '"+unqiue_id+"';";
-
+            count = statement.executeUpdate(query);
         } catch (Exception e) {
            System.out.println(e.getLocalizedMessage());
         }
-        return 0;
+        return count;
     }
     public ArrayList SelectWithSearch(String search) { // 리턴값은 ArrayList
         ArrayList optionInforList = new ArrayList<>(); //범위때문에 에러가 나서 try 위로 뽑아냄
