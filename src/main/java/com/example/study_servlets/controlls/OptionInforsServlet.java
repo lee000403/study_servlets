@@ -20,7 +20,7 @@ import com.example.daos.OptionInforsDao2;
 @WebServlet(urlPatterns = "/OptionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
      @Override
-     protected void doGet(HttpServletRequest requset, HttpServletResponse response)
+     protected void doGet(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
 
@@ -35,6 +35,13 @@ public class OptionInforsServlet extends HttpServlet {
                          "    <title>Document</title>\r\n" + //
                          "</head>\r\n" + //
                          "<body>\r\n" + //
+                         " <div class=\"container\">\r\n" + //
+                         "        <form action=\"OptionInforsServlet\">\r\n" + //
+                         "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                         "            <input type=\"text\" name=\"search\">\r\n" + //
+                         "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                         "        </form>\r\n" + //
+                         "    </div>"+//
                          "    <div class=\"container\">\r\n" + //
                          "        <table class=\"table table-bordered table-hover\">\r\n" + //
                          "            <thead>\r\n" + //
@@ -46,12 +53,15 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <tbody>\r\n";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
+               
                optionInforList = optionInforsDao2.SelectWithSearch("");
-               //for문을 돌면서 값을 받아냄
-               for(int i=0; i < optionInforList.size(); i++){
+
+
+               // for문을 돌면서 값을 받아냄
+               for (int i = 0; i < optionInforList.size(); i++) {
                     HashMap optionInforRecord = new HashMap<>();
                     optionInforRecord = (HashMap) optionInforList.get(i);
-                    
+
                     contents = contents + "                <tr>\r\n" + //
                               "                    <td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
                               "                    <td>" + optionInforRecord.get("OPTION_NAME") + " </td>\r\n"; // ;
