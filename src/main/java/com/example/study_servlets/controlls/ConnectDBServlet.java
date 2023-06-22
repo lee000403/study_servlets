@@ -52,17 +52,17 @@ public class ConnectDBServlet extends HttpServlet {
 
             // - query Edit
 
-            // FactorysDao factorysDao = new FactorysDao();
-            // ArrayList factoryList = new ArrayList();
-            // factoryList = factorysDao.selectAll();
-            // for (int i = 0; i < factoryList.size(); i++) {
-            //     HashMap hashMap = new HashMap();
-            //     hashMap = (HashMap) factoryList.get(i);
-            //     contents = contents + " <tr>\r\n" + //
-            //             "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
-            //             "                <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
-            //             "            </tr>\r\n";
-            // }
+            FactorysDao factorysDao = new FactorysDao();
+            ArrayList factoryList = new ArrayList();
+            factoryList = factorysDao.selectAll();
+            for (int i = 0; i < factoryList.size(); i++) {
+                HashMap hashMap = new HashMap();
+                hashMap = (HashMap) factoryList.get(i);
+                contents = contents + " <tr>\r\n" + //
+                        "                <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                        "                <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
+                        "            </tr>\r\n";
+            }
 
             CarInforsDao carInforsDao = new CarInforsDao();
             ArrayList carInforList = new ArrayList();
