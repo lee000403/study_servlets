@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.daos.OptionInforsDao2;
 
-@WebServlet(urlPatterns = "/OptionInforsDeleteServlet")
+@WebServlet(urlPatterns = "/OptionInforsDeleteServle")
 public class OptionInforsDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class OptionInforsDeleteServlet extends HttpServlet {
             String unique_id = request.getParameter("unique_id");
 
             OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
-            int count = optionInforsDao2.DeleteWithUniqueID(unique_id);
+            int count = optionInforsDao2.DeleteWithUniqueID(unique_id); 
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); // 네크워크에 보내줌

@@ -4,48 +4,42 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.example.commons.Common;
 
 public class OptionInforsDao2 {
-    public int InsertwithUniqueID(String name){
-       //inset 쿼리
+    public int UpdateWithUniqueID(String unqiue_id, String name) {
         int count = 0;
         try {
             Common common = new Common();
-            String unique_id = common.Commons();
             Statement statement = common.getStatement();
-            String query ="insert into option_infors\n" + //
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '"+name+"'\n" + //
+                    "where OPTION_INFOR_ID = '"+unqiue_id+"'";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            
+        }
+        return count;
+    }
+    public int InserWithUniqueID(String name){
+        int count = 0;
+        try {
+            Common common = new Common();
+            Statement statement = common.getStatement();
+            String uniqiue_id = common.Commons();
+            String query = "INSERT INTO option_infors\n" + //
                     "(OPTION_INFOR_ID, OPTION_NAME)\n" + //
                     "values\n" + //
-                    "('"+unique_id+"','"+name+"');";
-            count = statement.executeUpdate(query);
+                    "('"+uniqiue_id+"', '"+name+"')";
+            count = statement.executeUpdate(query);            
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } 
+        }
         return count;
     }
-
-    public int UpdatewithUniqueID(String unqiue_id, String name){
-       //Update 쿼리
-        int count = 0;
-        try {
-            Common common = new Common();
-            Statement statement = common.getStatement();
-            String query ="UPDATE option_infors\n" + //
-                    "set OPTION_NAME = '"+name+"'\n" + //
-                    "WHERE  OPTION_INFOR_ID = '"+unqiue_id+"';";
-            count = statement.executeUpdate(query);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } 
-        return count;
-    }
-
-
     public int DeleteWithUniqueID(String unqiue_id){
-       
-        // delete 쿼리 
         int count = 0;
         try {
             Common common = new Common();
