@@ -8,14 +8,20 @@ import java.util.HashMap;
 import com.example.commons.Common;
 
 public class OptionInforsDao2 {
-    public ArrayList SelectWithSearch() { // 리턴값은 ArrayList
+    public ArrayList SelectWithSearch(String search) { // 리턴값은 ArrayList
         ArrayList optionInforList = new ArrayList<>(); //범위때문에 에러가 나서 try 위로 뽑아냄
         try {
+            if (search == null) {
+                search = "";
+            }
             // DB에서 terminal로 데이터 가져오는 코드
             Common common = new Common();
             Statement statement = common.getStatement(); // Editor in Workbanch
-            String query = "SELECT * FROM db_cars.option_infors";
+            String query = "SELECT *\n" + //
+                    "FROM option_infors\n" + //
+                    "WHERE OPTION_NAME LIKE '"+search+"%'";
             ResultSet resultSet = statement.executeQuery(query); // query 실행
+            
 
             HashMap optionInforRecord = new HashMap<>();
             while (resultSet.next()) {

@@ -59,8 +59,8 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <thead>";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
-               // String search = request.getParameter("search"); //검색어를 받는 것 
-               optionInforList = optionInforsDao2.SelectWithSearch();
+               String search = request.getParameter("search"); //검색어를 받는 것 
+               optionInforList = optionInforsDao2.SelectWithSearch(search);
 
 
                // for문을 돌면서 값을 받아냄
