@@ -23,16 +23,16 @@ public class OptionInforsDao2 {
         }
         return count;
     }
-    public int InserWithUniqueID(String uniqiue_id){
+    public int InserWithUniqueID(String name){
         int count = 0;
         try {
             Common common = new Common();
             Statement statement = common.getStatement();
-            String uuid = common.Commons();
+            String uniqiue_id = common.Commons();
             String query = "INSERT INTO option_infors\n" + //
                     "(OPTION_INFOR_ID, OPTION_NAME)\n" + //
                     "values\n" + //
-                    "('"+uuid+"', '"+uniqiue_id+"')";
+                    "('"+uniqiue_id+"', '"+name+"')";
             count = statement.executeUpdate(query);            
         } catch (Exception e) {
             System.out.println(e.getMessage());

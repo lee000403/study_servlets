@@ -16,10 +16,10 @@ public class OptionInforsInsertServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String uniqiue_id = request.getParameter("name");
+            String name = request.getParameter("name");
 
             OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
-            int count = optionInforsDao2.InserWithUniqueID(uniqiue_id);
+            int count = optionInforsDao2.InserWithUniqueID(name);
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); // 네크워크에 보내줌
