@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.commons.Common;
+import com.example.daos.OptionInforsDao2;
 
 @WebServlet(urlPatterns = "/OptionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
@@ -68,8 +71,8 @@ public class OptionInforsServlet extends HttpServlet {
                          "            <tbody>\r\n";
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
-               
-               optionInforList = optionInforsDao2.SelectWithSearch("");
+               String serach = request.getParameter("search");
+               optionInforList = optionInforsDao2.SelectWithSearch(serach);
 
 
                // for문을 돌면서 값을 받아냄
