@@ -35,7 +35,6 @@ public class CookiesGetAndDeleteServlet extends HttpServlet {
             PrintWriter printWriter = response.getWriter();
             printWriter.println(content);
             printWriter.close();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

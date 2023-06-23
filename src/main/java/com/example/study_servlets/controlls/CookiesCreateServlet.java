@@ -28,7 +28,6 @@ public class CookiesCreateServlet extends HttpServlet {
             String content = "<div>CreateCookieServlets</div>";
             printWriter.println(content);
             printWriter.close();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
