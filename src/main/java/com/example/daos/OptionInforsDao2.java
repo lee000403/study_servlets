@@ -53,7 +53,7 @@ public class OptionInforsDao2 {
         return count;
     }
     public ArrayList SelectWithSearch(String search) { // 리턴값은 ArrayList
-        ArrayList optionInforList = new ArrayList<>(); //범위때문에 에러가 나서 try 위로 뽑아냄
+        ArrayList optionInforList = new ArrayList<>(); //범위때문에 에러가 나서 try 위로 뽑아냄 (리턴값때문에)
         try {
             
             //빈값이 들어오면 아무것도 안나오게금 
@@ -71,9 +71,9 @@ public class OptionInforsDao2 {
             ResultSet resultSet = statement.executeQuery(query); // query 실행
             
 
-            HashMap optionInforRecord = new HashMap<>();
+            HashMap optionInforRecord = new HashMap<>();// 해쉬맵 선언
             while (resultSet.next()) {
-                optionInforRecord = new HashMap<>();
+                optionInforRecord = new HashMap<>(); // 초기화 /초기화하지 않으면같은 값 계속 리스트에 들어가기 때문
                 optionInforRecord.put("OPTION_INFOR_ID", resultSet.getString("OPTION_INFOR_ID"));
                 optionInforRecord.put("OPTION_NAME", resultSet.getString("OPTION_NAME"));
                 
