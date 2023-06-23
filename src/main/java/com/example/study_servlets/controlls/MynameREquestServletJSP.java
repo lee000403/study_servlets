@@ -16,7 +16,7 @@ public class MynameREquestServletJSP extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/myname_request.jsp");
-            requestDispatcher.forward(request, response);
+            requestDispatcher.forward(request, response); //경로를 바꿔서 param을던져줌
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
