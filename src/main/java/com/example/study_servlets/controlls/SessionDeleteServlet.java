@@ -9,34 +9,37 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = "/cookies/GetAndDeleteServlet")
-public class CookiesGetAndDeleteServlet extends HttpServlet {
+//로그아웃할때 
+@WebServlet(urlPatterns ="/session/DeleteServlet" )
+public class SessionDeleteServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // cookies
+            // expired session
+            HttpSession httpSession = request.getSession();
+            httpSession.invalidate(); //session이 아웃됨 Server side
+
+            //delete cookies
             Cookie[] cookies = request.getCookies(); // 클라이언트가 보내는정보
             String content = "<div>CookiesGetAndDeleteServlet</div>";
             for (Cookie cookie : cookies) {
                 String name = cookie.getName();
                 String value = cookie.getValue();
-                if (name.equals("secondName")) { // 쿠키 삭제
+                if (name.equals("JSESSIONID")) { // 쿠키 삭제 -- Client side
                     cookie.setMaxAge(0); //0 삭제 , -1 무한대, 크기가 커지면 daily
                     response.addCookie(cookie); //변경된 내용을 저장 
-                } else { // 출력
-                    content = content + "<div>" + name + ", " + value + "</div>";
-                }
-
+                } 
             }
 
-            // display
             PrintWriter printWriter = response.getWriter();
-            printWriter.println(content);
+            String contents = "<div> Logout ! </div>";
+            printWriter.println(contents);
             printWriter.close();
+            
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+           System.out.println(e.getMessage());
         }
     }
 }
