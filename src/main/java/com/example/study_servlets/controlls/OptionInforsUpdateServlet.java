@@ -23,7 +23,7 @@ public class OptionInforsUpdateServlet extends HttpServlet{
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); // 네크워크에 보내줌
-            String contents = "Insert count : " + count;
+            String contents = "Update count : " + count;
             printWriter.println(contents);
             printWriter.close();
     }

@@ -23,7 +23,7 @@ public class OptionInforsInsertServlet extends HttpServlet{
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter(); // 네크워크에 보내줌
-            String contents = "Delete count : " + count;
+            String contents = "Insert count : " + count;
             printWriter.println(contents);
             printWriter.close();
         } catch (Exception e) {
