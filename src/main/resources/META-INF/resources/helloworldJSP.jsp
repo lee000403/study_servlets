@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47d5370f1e9c5d7651dafdebee728f660d46fd37
 <% System.out.println("HelloWorldJSP - doGet()"); %>
 <!DOCTYPE html>
 <html lang="en">

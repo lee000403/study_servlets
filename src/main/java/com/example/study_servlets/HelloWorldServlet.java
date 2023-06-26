@@ -21,18 +21,7 @@ public class HelloWorldServlet extends HttpServlet { // HttpServlet의 기능을
             String secondName = "GABAE !" ;
             PrintWriter printWriter = response.getWriter();//response.getWriter();네크워크에 응답하고 작성할꺼야 실어보내는거야 
             //String contents = "GABAE OH !";
-            String contents = "<!DOCTYPE html>\r\n" + //
-                    "<html lang=\"en\">\r\n" + //
-                    "<head>\r\n" + //
-                    "    <meta charset=\"UTF-8\">\r\n" + //
-                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
-                    "    <title>Hello World !</title>\r\n" + //
-                    "</head>\r\n" + //
-                    "<body>\r\n" + //
-                    "    <div> first Name : "+firstName+ " </div>\r\n" + //
-                    "    <div> second Name : "+secondName+" </div>\r\n" + //
-                    "</body>\r\n" + //
-                    "</html>";
+            String contents = "Yoju Lab !";
             printWriter.println(contents);
             printWriter.close(); //네크워크에 실어보냈고 CLOSED
         } catch (Exception e) {
