@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 // 로그인일 경우 
 // /session/CreateServlet?username=yojulab&password=1234
-//@WebServlet(urlPatterns = "/session/CreateServlet")
+@WebServlet(urlPatterns = "/session/CreateServlet")
 public class SessionCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
