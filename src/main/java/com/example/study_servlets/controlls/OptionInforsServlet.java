@@ -25,7 +25,7 @@ public class OptionInforsServlet extends HttpServlet {
                String search = request.getParameter("search"); // 검색어를 받는 것
 
                String temp = "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\">\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
@@ -50,7 +50,7 @@ public class OptionInforsServlet extends HttpServlet {
                          "\r\n" + //
                          "<body>\r\n" + //
                          "    <div class=\"container\">\r\n" + //
-                         "        <form action=\"http://192.168.0.166:8080/OptionInforsServlet\">\r\n" + //
+                         "        <form action=\"/OptionInforsServlet\">\r\n" + //
                          "            <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
                          "            <input type=\"text\" name=\"search\" value=\'"+search+"\'>\r\n" + //
                          "            <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
