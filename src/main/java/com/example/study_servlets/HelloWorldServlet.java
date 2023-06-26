@@ -16,6 +16,7 @@ public class HelloWorldServlet extends HttpServlet { // HttpServlet의 기능을
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("HelloWorldServlet - doGet()");
         try { // 서블렛으로 클라이언트에게 응답할수 있는 코드
+            response.setContentType("text/html;charset=UTF-8");
             String firstName = "OH";
             String secondName = "GABAE !" ;
             PrintWriter printWriter = response.getWriter();//response.getWriter();네크워크에 응답하고 작성할꺼야 실어보내는거야 
