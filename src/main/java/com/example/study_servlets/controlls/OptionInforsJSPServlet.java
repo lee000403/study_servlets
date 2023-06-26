@@ -24,7 +24,6 @@ public class OptionInforsJSPServlet extends HttpServlet {
                throws ServletException, IOException { // response는 보내는것, request는 가져오는 것
           try {
                String search = request.getParameter("search"); // 검색어를 받는 것
-
                OptionInforsDao2 optionInforsDao2 = new OptionInforsDao2();
                ArrayList optionInforList = new ArrayList<>();
                optionInforList = optionInforsDao2.SelectWithSearch(search);

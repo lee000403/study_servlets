@@ -31,11 +31,9 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-            <%
-            ArrayList optionInforList = new ArrayList<>();
-            optionInforList = (ArrayList)request.getAttribute("optionInforList");
-            %>
-            
+
+            <% ArrayList optionInforList = new ArrayList<>(); %>
+            <% optionInforList = (ArrayList) request.getAttribute("optionInforList"); %>
             <tbody>
                 <% for(int i=0; i< optionInforList.size(); i=i+1) { %>
                     <%
