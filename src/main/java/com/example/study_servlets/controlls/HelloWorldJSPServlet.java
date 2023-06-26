@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+///HelloWorldJSPServlet?company="YoJuLab"
 @WebServlet(urlPatterns = "/HelloWorldJSPServlet")
 public class HelloWorldJSPServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
