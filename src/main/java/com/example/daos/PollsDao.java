@@ -9,6 +9,34 @@ import com.example.commons.Common;
 import com.example.study_servlets.Commons;
 
 public class PollsDao {
+    public int Insert(HashMap<String, Object> map){
+        int count = 0;
+        try {
+            Common common = new Common();
+            Statement statement = common.getStatement(); // Editor in Workbanch
+            String query = "INSERT INTO statistics\n" + //
+                    "(STATISTICS_ID, RESPONDENTS_ID, QUESTIONS_ID, CHOICE_ID)\n" + //
+                    "values\n" ;
+            //print map
+            int loop = 1;
+            String userId = "R1"; //from session
+            for(String key : map.keySet()){ //key들의 집합만 가져올 수 있음. for each를 돌면서 key를 던져줌
+                String uuid = common.Commons();
+                if(loop > 1){ // 2번째부터 쉼표를 추가하는  
+                    query = query +", "; 
+                }  
+                query = query + "('"+uuid+"', '"+userId+"', '"+key+"', '"+map.get(key)+"')\n" ;
+                System.out.print( key+", "+map.get(key));  //key의 value = map.get(key)
+                loop = loop + 1 ;
+            } 
+            query = query + ";";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
     public ArrayList SelectWithSearch(String search) {
         ArrayList InforList = new ArrayList<>();
         try {
