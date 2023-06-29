@@ -14,8 +14,8 @@ public class Common {
         return uuid;
     }
     public Statement getStatement(){
-        String url = "jdbc:mysql://192.168.0.166:3306/db_cars";
-        String user = "yojulab";
+        String url = "jdbc:mysql://localhost:3306/db_survey";
+        String user = "root";
         String password = "!yojulab*";
 
         Statement statement = null;
