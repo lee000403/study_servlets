@@ -12,10 +12,10 @@
 </head>
 
 <body>
-    <!-- toop menu 로그인 자리 -->
-    <%@ include file="/top_menus.jsp"%>
+   <!-- top menu -->
+   <%@ include file="/top_menus.jsp" %>
     <div class="container">
-        <div class="h1">메인 페이지</div>
+        <div class="h1"> 메인 페이지</div>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
