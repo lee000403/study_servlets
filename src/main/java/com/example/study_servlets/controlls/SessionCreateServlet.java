@@ -27,8 +27,8 @@ public class SessionCreateServlet extends HttpServlet {
             printWriter.println("<div>Create Session Servlets</div>"); // 네트워크에 println으로 출력 
             // login
             HttpSession httpSession = request.getSession(false); // 클라이언트의 상태값에 따라서 있으면 쓰고, 없으면 만들고 / 비교하고 넘겨주는 인스턴스화 
-            if (httpSession != null) { // JSESSION 있음 (null이 아니면) -> 로그인이 되었다는 표시 
-                String uernameSession = (String) httpSession.getAttribute("username"); 
+            String uernameSession = (String) httpSession.getAttribute("username"); 
+            if (httpSession != null && uernameSession != null) { // JSESSION 있음 (null이 아니면) -> 로그인이 되었다는 표시 
                 printWriter.println("<div>username : "+uernameSession+" </div>"); 
 
             } else { // JSESSION 없음 (null이면) -> 로그인 해야된다는 소리
