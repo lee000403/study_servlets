@@ -5,14 +5,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.commons.Common;
 import com.example.study_servlets.Commons;
 
 public class PollsDao {
     public ArrayList SelectWithSearch(String search) {
         ArrayList InforList = new ArrayList<>();
         try {
-            Commons commons = new Commons();
-            Statement statement = commons.getStatement(); // Editor in Workbanch
+            Common common = new Common();
+            Statement statement = common.getStatement(); // Editor in Workbanch
             String query = "SELECT T_QC.QUESTIONS_ID, T_QC.CHOICE_ID, T_Q.QUESTIONS, T_C.CHOICE\n" + //
                     "FROM question_choice AS T_QC\n" + //
                     "\tINNER JOIN questions AS T_Q\n" + //
