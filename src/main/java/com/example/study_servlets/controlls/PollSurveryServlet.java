@@ -24,6 +24,7 @@ public class PollSurveryServlet extends HttpServlet {
             // 메서드 호출 -> 메서드는 리턴을 무조건함 변수를
             PollsDao pollsDao = new PollsDao();
             ArrayList surveyList = pollsDao.SelectWithSearch(contents); 
+            ArrayList arrayList = new ArrayList<>();
             // 메서드는 무조건 리턴을 함 그래서 데이터 타입이ArrayList이고 해당 페이지에서 사용할 변수명 surveyList
             String compare = "";
 
